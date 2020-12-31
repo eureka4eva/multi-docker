@@ -20,3 +20,15 @@ after_success:
 - docker push eureka4eva/multi-nginx
 - docker push eureka4eva/multi-server
 - docker push eureka4eva/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-west-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: "elasticbeanstalk-us-west-1-8889990"
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS-ACCESS_KEY 
+  secret_access_key: 
+    secure: $AWS_SECRET_KEY 
